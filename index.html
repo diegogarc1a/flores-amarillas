@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F9C74A">
+  <meta name="description" content="Un jardín de flores amarillas para Kenia, de parte de Diego. 21 de septiembre.">
+  <title>Kenia &amp; Diego — Flores Amarillas</title>
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="32" fill="%23FFD54F"/><circle cx="50" cy="50" r="30" fill="none" stroke="%23FFB300" stroke-width="4"/><circle cx="50" cy="50" r="11" fill="%2385521B"/></svg>'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;500;600;700&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <canvas id="petals" aria-hidden="true"></canvas>
+
+  <audio id="music" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+    <source src="music.m4a" type="audio/mp4">
+    <source src="music.aac" type="audio/aac">
+  </audio>
+
+  <div id="intro" role="presentation" aria-label="Bienvenida">
+    <div class="intro-bloom" aria-hidden="true">
+      <span class="petal p1"></span>
+      <span class="petal p2"></span>
+      <span class="petal p3"></span>
+      <span class="petal p4"></span>
+      <span class="petal p5"></span>
+      <span class="petal p6"></span>
+      <span class="petal p7"></span>
+      <span class="petal p8"></span>
+      <span class="core"></span>
+    </div>
+    <h1 class="intro-title">Kenia <span class="amp">&amp;</span> Diego</h1>
+    <p class="intro-line">«Habrá un día en que todos... al levantar la vista, el jardín florece de amarillo»</p>
+    <p class="intro-tap">toca la flor para entrar</p>
+  </div>
+
+  <main id="page" hidden>
+    <header class="hero">
+      <p class="eyebrow">Feliz 21 de septiembre, mi vida</p>
+      <h1 class="title">Nuestras <span class="accent">flores amarillas</span></h1>
+      <p class="subtitle">Hoy la primavera nació un poquito más temprano: nació al lado tuyo, <span class="accent">Kenia</span>.</p>
+      <div class="ribbon" aria-hidden="true">
+        <span>🌼 21 · 09 · Día de las Flores Amarillas 🌼</span>
+      </div>
+      <p class="howto" aria-live="polite">👆 Tocá las flores con <span class="gold">halo dorado</span> que caen · juntá 7 y el jardín te regala una sorpresa
+      <span class="basket" id="basket">
+        <span class="basket-icon" aria-hidden="true">🌼</span>
+        <span class="basket-count" id="count">0</span>
+        <span class="basket-total">/ 7</span>
+        <span class="basket-dots" id="hud-dots" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>
+      </span>
+    </p>
+    </header>
+
+    <section class="counter" aria-label="Días de amor">
+      <p class="counter-label">Desde el 28 de junio de 2017, el mundo es más nuestro:</p>
+      <div class="counter-grid">
+        <div class="chip"><strong id="c-years">–</strong><span>años</span></div>
+        <div class="chip"><strong id="c-months">–</strong><span>meses</span></div>
+        <div class="chip"><strong id="c-days">–</strong><span>días</span></div>
+        <div class="chip"><strong id="c-total">–</strong><span>días totales</span></div>
+      </div>
+      <p class="counter-note">Y esta es la primavera que más flores ha traído, porque cada año te quiero un poco más.</p>
+    </section>
+
+    <section class="discover" aria-label="Sorpresa">
+      <button class="flower-button" id="open-letter" type="button">
+        <span class="flower-icon" aria-hidden="true">🌼</span>
+        <span class="flower-label">Toca aquí, mi flor</span>
+      </button>
+      <p class="discover-hint">Hay algo esperándote detrás de este botón… 🌷</p>
+    </section>
+
+    <footer class="foot">
+      <p>Hecho con todo el amarillo del mundo, para ti. — Con amor, <span class="accent">Diego</span> 💛</p>
+    </footer>
+  </main>
+
+  <div class="music-btn" id="music-btn" role="button" aria-label="Encender la música">
+    <span class="note-icon" aria-hidden="true">🎶</span>
+    <span class="music-hint">ponle sonido</span>
+    <span class="wave w1" aria-hidden="true"></span>
+    <span class="wave w2" aria-hidden="true"></span>
+    <span class="wave w3" aria-hidden="true"></span>
+  </div>
+
+  <div id="confetti-layer" aria-hidden="true"></div>
+  <div id="trail-layer" aria-hidden="true"></div>
+
+  <div class="letter-backdrop" id="letter" role="dialog" aria-modal="true" aria-label="Carta de amor">
+    <div class="letter-card">
+      <button class="letter-close" id="close-letter" aria-label="Cerrar carta">✕</button>
+      <div class="letter-flower" aria-hidden="true">🌻</div>
+      <p class="letter-date">21 de septiembre · Día de las Flores Amarillas</p>
+      <h2 class="letter-title">Para Kenia, mi sol</h2>
+      <div class="letter-body">
+        <p>Mi amor,</p>
+        <p>Hay días que el cielo elige vestirse de amarillo, y hoy la tierra entera guardó silencio solo para florecer a tus pies. Dicen que "habrá un día en que todos, al levantar la vista, podrán ver flores amarillas". Pero no, mi vida: flores amarillas ya las veo yo cada mañana —las tengo en ti, en tu risa que ilumina más que el sol de septiembre, en la ternura con la que guardás lo nuestro.</p>
+        <p>Desde aquel 28 de junio de 2017 aprendí, con cada pétalo que cae, que el amor verdadero no se improvisa: se riega. Gracias por regar el nuestro todos los días con ese cariño que me florece el pecho.</p>
+        <p>Hoy no hay un solo tallo, ni uno, que no lleve tu nombre. Y si mañana el viento los arrastra, yo te juro que los volveré a sembrar solo para verte sonreír.</p>
+        <p class="letter-sign">Con todo mi amor,<br><span class="letter-name">Diego</span> 💛</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bouquet-backdrop" id="bouquet" role="dialog" aria-modal="true" aria-label="Jardín de flores amarillas">
+    <button class="letter-close bouquet-x" id="close-bouquet-x" aria-label="Cerrar jardín">✕</button>
+    <div class="bouquet-stage">
+      <p class="bouquet-win" aria-hidden="true">¡Lo lograste, mi amor! 💛</p>
+      <div class="garden-root" id="garden-root" aria-hidden="true"></div>
+      <p class="bouquet-line" aria-hidden="true">Tu jardín de flores amarillas, floreciendo para vos siempre 🌻</p>
+    </div>
+    <button class="bouquet-back" id="close-bouquet" type="button">Volver 🌼</button>
+  </div>
+
+  <div class="toast" id="toast" role="status">✨</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
